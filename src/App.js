@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import MessageForm from './components/MessageForm';
+import MessageDisplay from './components/MessageDisplay';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
+
+  const [currentMessage, setCurrentMessage] = useState("There are no messages");
+
+  const youveGotMail = ( newMessage ) => {
+    setCurrentMessage( newMessage );
+  }
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-secondary">
+      <MessageForm onNewMessage={ youveGotMail }/>
+      <MessageDisplay message={ currentMessage } />
     </div>
   );
 }
